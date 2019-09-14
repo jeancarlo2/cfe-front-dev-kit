@@ -7,19 +7,17 @@
 <script>
 import "@/js/all.js"
 import "@/js/jquery.min.js"
-export default {
-  
-}
-
+export default {}
 </script>
 <style lang="scss">
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
+@import "@/theme/_variables.scss";
+@import "@/theme/_overrides.scss";
+
 // Set your colors
 $primary: #8c67ef;
 $primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
-$twitter-invert: findColorInvert($twitter);
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -32,12 +30,8 @@ $colors: (
     "success": ($success, $success-invert),
     "warning": ($warning, $warning-invert),
     "danger": ($danger, $danger-invert),
-    "twitter": ($twitter, $twitter-invert)
 );
-// Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;
+
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
