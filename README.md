@@ -5,25 +5,32 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Usage
+### Prepare
+```sh
+$ npm run cordova-prepare # prepare for build (you can run this command, when you checkouted your project from GIT, it's like npm install)
 ```
-npm run serve
+### Android
+```sh
+$ npm run cordova-serve-android # Development Android
+$ npm run cordova-build-android # Build Android
+$ npm run cordova-build-only-www-android # Build only files to src-cordova
 ```
-
-### Compiles and minifies for production
+### IOS
+```sh
+$ npm run cordova-serve-ios # Development IOS
+$ npm run cordova-build-ios # Build IOS
+$ npm run cordova-build-only-www-ios # Build only files to src-cordova
 ```
-npm run build
+### OSX
+```sh
+$ npm run cordova-serve-osx # Development OSX
+$ npm run cordova-build-osx # Build OSX
+$ npm run cordova-build-only-www-osx # Build only files to src-cordova
 ```
-
-### Run your tests
+### Browser
+```sh
+$ npm run cordova-serve-browser # Development Browser
+$ npm run cordova-build-browser # Build Browser
+$ npm run cordova-build-only-www-browser # Build only files to src-cordova
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
