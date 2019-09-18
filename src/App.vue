@@ -7,19 +7,17 @@
 <script>
 import "@/js/all.js"
 import "@/js/jquery.min.js"
+import "@/js/js.cookie.min.js"
 export default {}
 </script>
 <style lang="scss">
-// Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 // @import "@/theme/_variables.scss";
 // @import "@/theme/_overrides.scss";
 
-// Set your colors
 // $primary: #8c67ef;
 // $primary-invert: findColorInvert($primary);
 // $bg: #2B3E50;
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
     "white": ($white, $black),
     "black": ($black, $white),
@@ -32,7 +30,6 @@ $colors: (
     "danger": ($danger, $danger-invert),
 );
 
-// Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 .progress-wrapper .progress-value{
@@ -43,15 +40,15 @@ $colors: (
 // .modal-card-body{
 //   background: $bg;
 // }
+// .field .label{
+//   color:#fff
+// }
 #datepicker{
   display: none;
 }
 .modal-card{
   padding:10px
 }
-// .field .label{
-//   color:#fff
-// }
 .modal .box{
   height: 100%;
 }

@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   Navbar(msg="Dashboard")
-  Saldo
+  Saldo(:value="usuario.saldo")
   Contas
   Metas
 </template>
@@ -12,7 +12,16 @@ import Saldo  from '@/components/Saldo.vue'
 import Contas from '@/components/Contas.vue'
 import Metas  from '@/components/Metas.vue'
 export default {
-  name: 'dashboard',
+  data(){
+    return {
+      usuario: Cookies.getJSON('usuario')
+    }
+  },
+  created() {
+      console.log(this.usuario)
+      if(!this.usuario) this.$router.push("/");
+
+  },
   components: {
     Navbar,
     Saldo,

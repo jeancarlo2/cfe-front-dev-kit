@@ -5,7 +5,7 @@ import Buefy from 'buefy'
 
 Vue.use(Buefy)
 Vue.config.productionTip = false
-
+Vue.prototype.api = "https://appcfe.tk/";
 new Vue({
   router,
   render: h => h(App)
