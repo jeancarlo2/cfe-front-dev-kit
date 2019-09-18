@@ -18,8 +18,12 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
     <platform name="android">
-        <allow-intent href="market:*" />
+        <allow-navigation href="*" />
+        <allow-intent href="*" />
+        <access origin="*" />
+        <allow-intent href="https://*/*" />
         <preference name="android-minSdkVersion" value="19"/> 
         <preference name="android-targetSdkVersion" value="19"/>
     </platform>
