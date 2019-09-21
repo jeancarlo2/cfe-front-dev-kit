@@ -23,14 +23,15 @@ div
 
 <script>
 import Navbar from '@/components/Navbar.vue'
-import Modal from "@/modal/Lancamentos.vue";
+import Modal  from "@/modal/Lancamentos.vue";
 export default {
   components: {
     Navbar,
     Modal,
   },
-  created(){
-    console.log("oi")
+  async created(){
+    this.lancamentos = await this.lancamento.get(this.month, this.year)
+    console.log(this.lancamentos)
   },
   methods:{
     CloseModal() {

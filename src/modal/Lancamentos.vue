@@ -40,7 +40,6 @@ export default {
     },
     data(){
         return{
-            usuario: Cookies.getJSON('usuario'),
             tipo: 1,
             descricao: '',
             valor: 0
