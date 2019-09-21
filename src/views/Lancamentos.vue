@@ -2,8 +2,8 @@
 div
   Navbar(msg="Lançamentos")
   Modal(:open.sync="AddConta" :close="CloseModal")
-  b-button(@click="AddConta = true" type="is-text" size="is-medium").flutuante
-    b-icon(pack="fa" icon="plus-circle" size="is-large" type="is-success")
+  b-button(@click="AddConta = true" type="is-text" size="is-large").flutuante
+    i.fa.fa-plus-circle.has-text-success.fa-3x
   br
   .columns.is-mobile.is-centered
     .column.is-10
@@ -24,11 +24,13 @@ div
 <script>
 import Navbar from '@/components/Navbar.vue'
 import Modal from "@/modal/Lancamentos.vue";
-const lancamentos = $.post().done()
 export default {
   components: {
     Navbar,
     Modal,
+  },
+  created(){
+    console.log("oi")
   },
   methods:{
     CloseModal() {
@@ -56,7 +58,7 @@ export default {
   },
   data(){
     return{
-      lancamentos,
+      lancamentos: false,
       AddConta: false,
       month:  new Date().getMonth(),
       year:   new Date().getFullYear(),

@@ -77,7 +77,7 @@ $colors: (
 .flutuante{
   float: right;
   position: fixed;
-  bottom: 25px;
+  bottom: 70px;
   right: 25px;
 }
 </style>

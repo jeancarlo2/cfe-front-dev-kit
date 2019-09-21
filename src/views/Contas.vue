@@ -3,8 +3,8 @@ div
   Navbar(msg="Contas")
   Modal(:open.sync="AddConta" :close="CloseModal")
   br
-  b-button(@click="AddConta = true" type="is-text" size="is-medium").flutuante
-    b-icon(pack="fa" icon="plus-circle" size="is-large" type="is-success")
+  b-button(@click="AddConta = true" type="is-text" size="is-large").flutuante
+    i.fa.fa-plus-circle.has-text-success.fa-3x
   .columns.is-mobile.is-centered
     .column.is-11
       .box.box-list
