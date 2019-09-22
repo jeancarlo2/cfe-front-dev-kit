@@ -10,9 +10,7 @@ div
       button.is-primary.is-outlined.is-rounded.button.is-fullwidth.is-uppercase(@click="$refs.datepicker.toggle()")
         span.subtitle {{ meses[month] }} / {{ year }}
       b-datepicker#datepicker(@change-year="trocaAno" @change-month="trocaMes" ref="datepicker" type="month" icon-pack="fas" icon-prev="angle-double-left" icon-next="angle-double-right" :month-names="meses")
-  div(v-if="!lancamentos")
-    h1.subtitle.has-text-centered.is-uppercase Ainda não existem lançamentos
-  .columns.is-mobile.is-centered(v-else)
+  .columns.is-mobile.is-centered(v-for="lancamento in lancamentos")
     .column.is-11
       .box.box-list
         span.titulo(@click="PayConta(1)") Conta de luz
