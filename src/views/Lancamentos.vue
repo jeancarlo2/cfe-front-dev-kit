@@ -13,11 +13,11 @@ div
   .columns.is-mobile.is-centered(v-for="lancamento in lancamentos")
     .column.is-11
       .box.box-list
-        span.titulo(@click="PayConta(1)") Conta de luz
+        span.titulo(@click="PayConta(lancamento._id)") {{ lancamento.titulo }}
         .buttons.is-marginless.is-pulled-right
-          b-button(type="is-danger" size="is-small" @click="DelConta(1)" rounded)
+          b-button(type="is-danger" size="is-small" @click="DelConta(lancamento._id)" rounded)
             b-icon(pack="fa" icon="trash" size="is-small")
-        span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(1)") R$ 150,00
+        span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(lancamento._id)") R$ {{ lancamento.valor }}
 </template>
 
 <script>
@@ -34,6 +34,7 @@ export default {
   methods:{
     CloseModal() {
       this.AddConta = false;
+      this.UpdateLancamentos()
     },
     async UpdateLancamentos(){
         this.lancamentos = await this.lancamento.get(this.month, this.year)
@@ -43,12 +44,17 @@ export default {
         message: "Deseja apagar o lançamento #" + id + "?",
         confirmText: "Excluir",
         cancelText: "Cancelar",
-        onConfirm: () =>
-          this.$buefy.toast.open({
-            message: "Conta exlcuida!",
-            position: "is-bottom",
-            type: "is-success"
+        onConfirm: () =>{
+          let update = this.UpdateLancamentos
+          $.post(this.api+`lancamento/delete/${id}`).done(data => {
+            this.$buefy.toast.open({
+              message: "Conta exlcuida!",
+              position: "is-bottom",
+              type: "is-success"
+            })
+            update()
           })
+        }
       });
     },
     trocaMes(m){

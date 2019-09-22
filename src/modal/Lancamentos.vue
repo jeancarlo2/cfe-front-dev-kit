@@ -5,9 +5,9 @@ b-modal(:active="open" :on-cancel="close" full-screen :can-cancel="false")
         hr
         form
             b-field(label="Descrição")
-                b-input(rounded v-model="descricao")
+                b-input(rounded v-model="titulo")
             b-field(label="Valor" )
-                b-input(type="number" rounded v-model="valor")
+                b-input(type="number" step="0.01" rounded v-model="valor")
             b-field(label="Tipo").has-text-white
                 b-select(placeholder="Tipo" rounded expanded v-model="tipo")
                     option(value=1) Receita
@@ -26,10 +26,11 @@ export default {
     methods:{
         create(){
             let data = {
-                descricao: this.descricao,
-                valor: this.valor,
-                tipo: this.tipo,
-                conta: false,
+                descricao:  this.descricao,
+                valor:      this.valor,
+                tipo:       this.tipo,
+                titulo:     this.titulo,
+                conta:      false,
             }
             let close = this.close
             $.post(this.api+'lancamento/create/'+this.usuario._id, data)
@@ -41,7 +42,7 @@ export default {
     data(){
         return{
             tipo: 1,
-            descricao: '',
+            titulo: '',
             valor: 0
         }
     }
