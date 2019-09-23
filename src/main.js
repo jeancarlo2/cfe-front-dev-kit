@@ -18,6 +18,8 @@ Vue.prototype.lancamento  = {
   
   }
 }
+Vue.prototype.converteMoeda = $ => parseFloat($).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+
 new Vue({
   router,
   render: h => h(App)

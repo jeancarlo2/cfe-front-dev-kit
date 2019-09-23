@@ -15,7 +15,7 @@ div
         .buttons.is-marginless.is-pulled-right
           b-button(type="is-danger" size="is-small" @click="DelConta(lancamento._id)" rounded)
             b-icon(pack="fa" icon="trash" size="is-small")
-        span.is-pulled-right(style="margin-right: 25px;" ) R$ {{ lancamento.valor }}
+        span.is-pulled-right(style="margin-right: 25px;" ) R$ {{ converteMoeda(lancamento.valor) }}
 </template>
 
 <script>
