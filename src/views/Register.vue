@@ -30,7 +30,7 @@ export default {
             let resetemail = () => {
                 this.email = ''
             }
-            $.post(this.api+'user/check-email/'+this.email).done(function(data){
+            $.post(this.api+'usuario/check-email/'+this.email).done(function(data){
                 console.log(data)
                 if(data.length){
                     buefy.dialog.alert({
@@ -45,7 +45,7 @@ export default {
         checkForm(){
             let buefy = this.$buefy;
             let router = this.$router;
-            $.post(this.api+'user/register/',{
+            $.post(this.api+'usuario/register/',{
                 nome:this.nome,
                 email: this.email,
                 senha: this.senha

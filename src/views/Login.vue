@@ -25,7 +25,7 @@ export default {
         checkForm(){
             let buefy = this.$buefy;
             let router = this.$router;
-            $.post(this.api+'user/login',{
+            $.post(this.api+'usuario/login',{
                 email: this.email,
                 senha: this.senha
             }).done(function(data){
