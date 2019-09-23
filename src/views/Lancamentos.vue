@@ -6,10 +6,8 @@ div
     i.fa.fa-plus-circle.has-text-success.fa-3x
   br
   .columns.is-mobile.is-centered
-    .column.is-10
-      button.is-primary.is-outlined.is-rounded.button.is-fullwidth.is-uppercase(@click="$refs.datepicker.toggle()")
-        span.subtitle {{ meses[month] }} / {{ year }}
-      b-datepicker#datepicker(@change-year="trocaAno" @change-month="trocaMes" ref="datepicker" type="month" icon-pack="fas" icon-prev="angle-double-left" icon-next="angle-double-right" :month-names="meses")
+    .column.is-11
+      Datepicker(:trocaAno="trocaAno" :trocaMes="trocaMes")
   .columns.is-mobile.is-centered(v-for="lancamento in lancamentos")
     .column.is-11
       .box.box-list
@@ -22,10 +20,12 @@ div
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import Datepicker from '@/components/Datepicker.vue'
 import Modal  from "@/modal/Lancamentos.vue";
 export default {
   components: {
     Navbar,
+    Datepicker,
     Modal,
   },
   async created(){
