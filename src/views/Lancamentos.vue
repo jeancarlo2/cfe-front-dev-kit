@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   Navbar(msg="Lançamentos")
-  Saldo(:value="usuario.saldo" more=0)
+  Saldo(:value="(saldo)?saldo:null" more=0)
   Modal(:open.sync="AddConta" :close="CloseModal")
   b-button(@click="AddConta = true" type="is-text" size="is-large").flutuante
     i.fa.fa-plus-circle.has-text-success.fa-3x
@@ -40,7 +40,9 @@ export default {
       this.UpdateLancamentos()
     },
     async UpdateLancamentos(){
-        this.lancamentos = await this.lancamento.get(this.month, this.year)
+        this.lancamentos  = await this.lancamento.get(this.month, this.year)
+        this.saldo        = await this.lancamento.saldo(this.month, this.year)
+        this.saldo        = this.converteMoeda(this.saldo)
     },
     DelConta(id) {
       this.$buefy.dialog.confirm({
@@ -71,6 +73,7 @@ export default {
   },
   data(){
     return{
+      saldo:false,
       lancamentos: false,
       AddConta: false,
       month:  new Date().getMonth(),
