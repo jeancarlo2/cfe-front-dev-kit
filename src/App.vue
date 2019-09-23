@@ -55,6 +55,12 @@ $colors: (
 .box{
   padding: 10px 10px 2px;
 }
+.box.despesa{
+  border-bottom: 3px solid $danger
+}
+.box.receita{
+  border-bottom: 3px solid $success
+}
 .box hr{
   height: 1px;
   margin: 10px 80px;

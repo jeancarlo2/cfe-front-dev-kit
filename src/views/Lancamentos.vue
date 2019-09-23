@@ -11,7 +11,7 @@ div
       Datepicker(:trocaAno="trocaAno" :trocaMes="trocaMes")
   .columns.is-mobile.is-centered(v-for="lancamento in lancamentos")
     .column.is-11
-      .box.box-list
+      .box.box-list(:class="lancamento.tipo ? 'receita':'despesa'")
         span.titulo {{ lancamento.titulo }}
         .buttons.is-marginless.is-pulled-right
           b-button(type="is-danger" size="is-small" @click="DelConta(lancamento._id)" rounded)
