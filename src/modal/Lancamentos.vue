@@ -26,7 +26,6 @@ export default {
     methods:{
         create(){
             let data = {
-                descricao:  this.descricao,
                 valor:      this.valor,
                 tipo:       this.tipo,
                 titulo:     this.titulo,

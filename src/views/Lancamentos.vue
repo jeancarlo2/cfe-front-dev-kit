@@ -8,7 +8,7 @@ div
   br
   .columns.is-mobile.is-centered
     .column.is-11(style="padding-top: 0;")
-      Datepicker(:trocaAno="trocaAno" :trocaMes="trocaMes")
+      Datepicker(:update="update")
   .columns.is-mobile.is-centered(v-for="lancamento in lancamentos")
     .column.is-11
       .box.box-list(:class="lancamento.tipo ? 'receita':'despesa'")
@@ -33,16 +33,20 @@ export default {
   },
   async created(){
     this.UpdateLancamentos()
+    this.UpdateSaldo()
   },
   methods:{
     CloseModal() {
       this.AddConta = false;
       this.UpdateLancamentos()
+      this.UpdateSaldo()
     },
     async UpdateLancamentos(){
         this.lancamentos  = await this.lancamento.get(this.month, this.year)
-        this.saldo        = await this.lancamento.saldo(this.month, this.year)
-        this.saldo        = this.converteMoeda(this.saldo)
+    },
+    async UpdateSaldo(){
+      this.saldo        = await this.lancamento.saldo(this.month, this.year)
+      this.saldo        = this.converteMoeda(this.saldo)
     },
     DelConta(id) {
       this.$buefy.dialog.confirm({
@@ -50,7 +54,10 @@ export default {
         confirmText: "Excluir",
         cancelText: "Cancelar",
         onConfirm: () =>{
-          let update = this.UpdateLancamentos
+          let update = ()=>{
+            this.UpdateLancamentos()
+            this.UpdateSaldo()
+          }
           $.post(this.api+`lancamento/delete/${id}`).done(data => {
             this.$buefy.toast.open({
               message: "Conta exlcuida!",
@@ -62,13 +69,11 @@ export default {
         }
       });
     },
-    trocaMes(m){
+    async update(m,y){
       this.month = m
-      this.UpdateLancamentos()
-    },
-    trocaAno(y){
       this.year = y
       this.UpdateLancamentos()
+      this.UpdateSaldo()
     }
   },
   data(){
@@ -76,9 +81,8 @@ export default {
       saldo:false,
       lancamentos: false,
       AddConta: false,
-      month:  new Date().getMonth(),
-      year:   new Date().getFullYear(),
-      meses: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+      month: new Date().getMonth(),
+      year: new Date().getFullYear(),
     }
   }
 }
