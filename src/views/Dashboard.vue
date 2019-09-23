@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   Navbar(msg="Dashboard")
-  Saldo(:value="usuario.saldo")
+  Saldo(:value="usuario.saldo" more=1)
   Contas
   Metas
 </template>

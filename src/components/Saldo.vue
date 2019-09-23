@@ -7,7 +7,7 @@ div
                     small(style="float: left;opacity: .8;") R$
                     span {{ (value)? value : "0,00" }}
                 h2.subtitle.has-text-centered saldo geral
-        .hero-footer        
+        .hero-footer(v-if="parseInt(more) == 1")       
             p.has-text-centered
                 router-link.button.is-text.has-text-white(to="lancamentos") ver lançamentos
     br
@@ -15,7 +15,8 @@ div
 <script>
 export default {
   props:{
-      value: String
+      value: String,
+      more: String
   }
 }
 </script>

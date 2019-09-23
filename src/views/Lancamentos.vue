@@ -1,12 +1,13 @@
 <template lang="pug">
 div
   Navbar(msg="Lançamentos")
+  Saldo(:value="usuario.saldo" more=0)
   Modal(:open.sync="AddConta" :close="CloseModal")
   b-button(@click="AddConta = true" type="is-text" size="is-large").flutuante
     i.fa.fa-plus-circle.has-text-success.fa-3x
   br
   .columns.is-mobile.is-centered
-    .column.is-11
+    .column.is-11(style="padding-top: 0;")
       Datepicker(:trocaAno="trocaAno" :trocaMes="trocaMes")
   .columns.is-mobile.is-centered(v-for="lancamento in lancamentos")
     .column.is-11
@@ -19,14 +20,16 @@ div
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
+import Navbar     from '@/components/Navbar.vue'
 import Datepicker from '@/components/Datepicker.vue'
-import Modal  from "@/modal/Lancamentos.vue";
+import Saldo      from '@/components/Saldo.vue'
+import Modal      from "@/modal/Lancamentos.vue";
 export default {
   components: {
     Navbar,
     Datepicker,
     Modal,
+    Saldo,
   },
   async created(){
     this.UpdateLancamentos()
