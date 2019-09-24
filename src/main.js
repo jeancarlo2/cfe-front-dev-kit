@@ -24,6 +24,15 @@ Vue.prototype.lancamento  = {
     })
   }
 }
+Vue.prototype.conta = {
+  get(mes, ano){
+    return new Promise((r,rr)=>{
+      mes     = mes + 1
+      mes     = (mes < 10) ? "0"+mes : mes
+      $.post(Vue.prototype.api+`conta/${Vue.prototype.usuario._id}/${mes}/${ano}`).then(data => r(data) )
+    })
+  }
+}
 Vue.prototype.converteMoeda = $ => parseFloat($).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 
 new Vue({

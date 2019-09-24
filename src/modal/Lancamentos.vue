@@ -3,11 +3,11 @@ b-modal(:active="open" :on-cancel="close" full-screen :can-cancel="false")
     .box
         h1.subtitle.has-text-centered Adicionar Lançamento
         hr
-        form
+        form(@submit="create")
             b-field(label="Descrição")
-                b-input(rounded v-model="titulo")
+                b-input(rounded v-model="titulo" required)
             b-field(label="Valor" )
-                b-input(type="number" step="0.01" rounded v-model="valor")
+                b-input(type="number" min="0.01" step="0.01" rounded required v-model="valor")
             b-field(label="Tipo").has-text-white
                 b-select(placeholder="Tipo" rounded expanded v-model="tipo")
                     option(value=1) Receita
@@ -15,7 +15,7 @@ b-modal(:active="open" :on-cancel="close" full-screen :can-cancel="false")
             hr
             .buttons(style="padding-bottom:10px;justify-content: center;")
                 b-button(type="is-danger" rounded @click="close") Calcelar
-                b-button(type="is-success" rounded @click="create") Salvar
+                input.button.is-success.is-rounded(type="submit" value="Salvar")
 </template>
 <script>
 export default {

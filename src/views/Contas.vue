@@ -9,14 +9,28 @@ div
   .columns.is-mobile.is-centered
     .column.is-11(style="padding-top: 0;")
       Datepicker(:update="update")
-  .columns.is-mobile.is-centered
+  .divider
+    b parceladas
+    hr
+  .columns.is-mobile.is-centered(v-for="conta in contas.parceladas")
     .column.is-11
       .box.box-list
-        span.titulo(@click="PayConta(1)") Conta de luz
+        span.titulo(@click="PayConta(conta._id)") {{ conta.titulo }}
         .buttons.is-marginless.is-pulled-right
-          b-button(type="is-danger" size="is-small" @click="DelConta(1)" rounded)
+          b-button(type="is-danger" size="is-small" @click="DelConta(conta._id)" rounded)
             b-icon(pack="fa" icon="trash" size="is-small")
-        span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(1)") R$ 150,00
+        span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(conta._id)") R$ {{ converteMoeda(conta.valor) }}
+  .divider
+    b fixas
+    hr
+  .columns.is-mobile.is-centered(v-for="conta in contas.fixas")
+    .column.is-11
+      .box.box-list
+        span.titulo(@click="PayConta(conta._id)") {{ conta.titulo }}
+        .buttons.is-marginless.is-pulled-right
+          b-button(type="is-danger" size="is-small" @click="DelConta(conta._id)" rounded)
+            b-icon(pack="fa" icon="trash" size="is-small")
+        span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(conta._id)") R$ {{ converteMoeda(conta.valor) }}
 </template>
 
 <script>
@@ -32,8 +46,14 @@ export default {
   },
   data() {
     return {
-      AddConta: false
+      AddConta: false,
+      contas: false,
+      month: new Date().getMonth(),
+      year: new Date().getFullYear(),
     };
+  },
+  created(){
+    this.UpdateContas()
   },
   methods: {
     async update(m,y){
@@ -41,6 +61,9 @@ export default {
       this.year = y
       console.log(m,y)
       // this.UpdateContas()
+    },
+    async UpdateContas(){
+        this.contas  = await this.conta.get(this.month, this.year)
     },
     CloseModal() {
       this.AddConta = false;

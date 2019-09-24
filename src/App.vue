@@ -46,8 +46,17 @@ $colors: (
 // .field .label{
 //   color:#fff
 // }
-#datepicker{
-  display: none;
+.divider{
+  position: relative;
+}
+.divider b{
+  position: absolute;
+  left: 10px;
+  background: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 3px;
+  bottom: -10px;
 }
 .modal-card{
   padding:10px
@@ -86,7 +95,7 @@ $colors: (
 .flutuante{
   float: right;
   position: fixed;
-  bottom: 70px;
-  right: 25px;
+  bottom: 40px;
+  right: 0px;
 }
 </style>
