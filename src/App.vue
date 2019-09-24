@@ -32,20 +32,23 @@ $colors: (
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
-.progress-wrapper .progress-value{
-  top: 5px;
-  right: 0!important;
-  left: initial!important;
-}
-.progress-wrapper .progress.is-large + .progress-value{
-  margin-top: 5px;
-}
+// .progress-wrapper .progress-value{
+//   top: 5px;
+//   right: 0!important;
+//   left: initial!important;
+// }
+// .progress-wrapper .progress.is-large + .progress-value{
+//   margin-top: 5px;
+// }
 // .modal-card-body{
 //   background: $bg;
 // }
 // .field .label{
 //   color:#fff
 // }
+#app{
+  padding-bottom: 90px
+}
 .divider{
   position: relative;
 }
@@ -97,5 +100,6 @@ $colors: (
   position: fixed;
   bottom: 40px;
   right: 0px;
+  z-index: 39;
 }
 </style>

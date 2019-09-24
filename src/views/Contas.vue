@@ -14,29 +14,31 @@ div
     hr
   .columns.is-mobile.is-centered(v-for="conta in contas.parceladas")
     .column.is-11
-      .box.box-list(@click="PayConta(conta._id)")
-        span.titulo {{ conta.titulo }}
-          //- small R$ {{ converteMoeda(conta.valor) }}
-        //- .buttons.is-marginless.is-pulled-right
-        //-   b-button(type="is-danger" size="is-small" @click="DelConta(conta._id)" rounded)
-        //-     b-icon(pack="fa" icon="trash" size="is-small")
-        span.is-pulled-right(@click="PayConta(conta._id)")
-          small
-            b {{conta.parcelas}}x 
-          span R${{ converteMoeda(conta.valor/conta.parcelas) }}
+      .box.box-list
+        span.titulo(@click="PayParcela(conta)") {{ conta.titulo }}
+        .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(conta._id)")
+          b-icon(pack="fa" icon="trash" size="is-small")
+        span.is-pulled-right
+          span R${{ converteMoeda(conta.valor) }}
+        div(@click="PayParcela(conta)")
+          b-progress(type="setProgress(conta.pagos.length*(conta.valor/conta.parcelas), conta.valor)" :value="conta.pagos.length*(conta.valor/conta.parcelas)" :max="parseFloat(conta.valor)" size="is-normal" show-value) {{ (conta.pagos.length)?conta.pagos.length:0 }} / {{conta.parcelas}}
   .divider
     b fixas
     hr
   .columns.is-mobile.is-centered(v-for="conta in contas.fixas")
     .column.is-11
       .box.box-list
-        span.titulo(@click="PayConta(conta._id)") {{ conta.titulo }}
+        span.titulo {{ conta.titulo }}
         .buttons.is-marginless.is-pulled-right
           b-button(type="is-danger" size="is-small" @click="DelConta(conta._id)" rounded)
             b-icon(pack="fa" icon="trash" size="is-small")
         span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(conta._id)") R$ {{ converteMoeda(conta.valor) }}
 </template>
-
+<style>
+.progress-wrapper .progress-value{
+  top:15px!important
+}
+</style>
 <script>
 import Navbar     from "@/components/Navbar.vue";
 import Datepicker from "@/components/Datepicker.vue";
@@ -60,6 +62,16 @@ export default {
     this.UpdateContas()
   },
   methods: {
+    setProgress(val, max) {
+      let percent = (max/val)
+      if ( percent <= 1.25) {
+          return "is-success";
+      }else if ( percent <= 2.2) {
+          return "is-warning";
+      }else{
+          return "is-danger";
+      }
+    },
     async update(m,y){
       this.month = m
       this.year = y
@@ -85,17 +97,19 @@ export default {
           })
       });
     },
-    PayConta(id) {
+    PayParcela(conta) {
       this.$buefy.dialog.confirm({
-        message: "Deseja pagar a conta #" + id + "?",
-        confirmText: "Pagar",
+        title: conta.titulo+" - R$"+this.converteMoeda(conta.valor),
+        message:`${conta.parcelas} parcelas de <b>R$ ${this.converteMoeda(conta.valor/conta.parcelas)}</b><br>${conta.pago.length} parcelas pagas`,
+        confirmText: "Pagar parcela",
         cancelText: "Cancelar",
+        type: "is-success",
         onConfirm: () =>
           this.$buefy.toast.open({
-            message: "Conta paga!",
+            message: "Parcela paga!",
             position: "is-bottom",
             type: "is-success"
-          })
+          }),
       });
     }
   }
