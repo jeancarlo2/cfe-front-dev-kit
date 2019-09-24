@@ -6,17 +6,21 @@ div
   b-button(@click="AddMeta = true" type="is-text" size="is-large").flutuante
     i.fa.fa-plus-circle.has-text-success.fa-3x
   .columns.is-mobile.is-centered
-    .column.is-11
-      .box.box-list
-        span.titulo Tênis para correr
-        .buttons.is-marginless.is-pulled-right
-          b-button(type="is-danger" size="is-small" @click='DelMeta(1)' rounded)
-            b-icon(pack="fa" icon="trash" size="is-small")
-          b-button(type="is-success" size="is-small" @click='AddFundos(1)' rounded)
-            b-icon(pack="fa" icon="money-bill-alt" size="is-small")
-        b-progress(:type="setProgress(60, 100)" :value="60" :max="100" size="is-large" show-value) 60 / 100
+      .column.is-11
+        .box.box-list
+          span.titulo(@click="AddFundos(1)") Meta
+          .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelMeta(conta._id)")
+            b-icon(pack="fa" icon="trash" type="is-danger" size="is-small")
+          span.is-pulled-right
+            span R${{ converteMoeda(1) }}
+          div(@click="AddFundos(1)")
+            b-progress(:type="setProgress(10, 100)" :value="10" :max="100" size="is-normal" show-value) 1/10
 </template>
-
+<style>
+.progress-wrapper .progress-value{
+  top:15px!important
+}
+</style>
 <script>
 import Navbar from "@/components/Navbar.vue";
 import Modal from "@/modal/Metas.vue";

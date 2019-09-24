@@ -76,6 +76,9 @@ $colors: (
 .box.receita{
   border-bottom: 3px solid $success
 }
+.box.conta{
+  border-bottom: 3px solid $info
+}
 .box hr{
   height: 1px;
   margin: 10px 80px;

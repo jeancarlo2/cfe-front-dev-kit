@@ -17,22 +17,21 @@ div
       .box.box-list
         span.titulo(@click="PayParcela(conta)") {{ conta.titulo }}
         .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(conta._id)")
-          b-icon(pack="fa" icon="trash" size="is-small")
+          b-icon(pack="fa" icon="trash" type="is-danger" size="is-small")
         span.is-pulled-right
           span R${{ converteMoeda(conta.valor) }}
         div(@click="PayParcela(conta)")
-          b-progress(type="setProgress(conta.pagos.length*(conta.valor/conta.parcelas), conta.valor)" :value="conta.pagos.length*(conta.valor/conta.parcelas)" :max="parseFloat(conta.valor)" size="is-normal" show-value) {{ (conta.pagos.length)?conta.pagos.length:0 }} / {{conta.parcelas}}
+          b-progress(:type="setProgress(conta.pagos.length*(conta.valor/conta.parcelas), conta.valor)" :value="conta.pagos.length*(conta.valor/conta.parcelas)" :max="parseFloat(conta.valor)" size="is-normal" show-value) {{ (conta.pagos.length)?conta.pagos.length:0 }} / {{conta.parcelas}}
   .divider
     b fixas
     hr
   .columns.is-mobile.is-centered(v-for="conta in contas.fixas")
     .column.is-11
-      .box.box-list
-        span.titulo {{ conta.titulo }}
-        .buttons.is-marginless.is-pulled-right
-          b-button(type="is-danger" size="is-small" @click="DelConta(conta._id)" rounded)
-            b-icon(pack="fa" icon="trash" size="is-small")
-        span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(conta._id)") R$ {{ converteMoeda(conta.valor) }}
+      .box.box-list(:class="conta.pago.length ? 'receita':''")
+        span.titulo(@click="PayConta(conta)") {{ conta.titulo }}
+        .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(conta._id)")
+          b-icon(pack="fa" icon="trash" type="is-danger" size="is-small")
+        span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(conta)") R$ {{ converteMoeda(conta.valor) }}
 </template>
 <style>
 .progress-wrapper .progress-value{
@@ -89,27 +88,77 @@ export default {
         message: "Deseja apagar a conta #" + id + "?",
         confirmText: "Excluir",
         cancelText: "Cancelar",
-        onConfirm: () =>
-          this.$buefy.toast.open({
-            message: "Conta exlcuida!",
-            position: "is-bottom",
-            type: "is-success"
-          })
+        onConfirm: () =>{
+          let toast = this.$buefy.toast
+          let up = this.UpdateContas
+          $.post(this.api+`conta/delete/${id}`)
+            .done(data=>{
+              up()
+              toast.open({
+                message: "Conta exlcuida!",
+                position: "is-bottom",
+                type: "is-success"
+              })
+            })
+        }
+      });
+    },
+    PayConta(conta){
+      if(conta.pago.length) return false;
+      this.$buefy.dialog.confirm({
+        title: conta.titulo+" - R$"+this.converteMoeda(conta.valor),
+        message:`Pagar conta?`,
+        confirmText: "Pagar conta",
+        cancelText: "Cancelar",
+        type: "is-success",
+        onConfirm: ()=>{
+          let data = {
+            contaid: conta._id,
+            titulo: `${conta.titulo}`,
+            valor: conta.valor,
+            tipo:0
+          }
+          let toast = this.$buefy.toast
+          let up = this.UpdateContas
+          $.post(this.api+`conta/pagar/${conta.userid}`, data)
+            .done(data=>{
+              up()
+              toast.open({
+                message: "Conta paga!",
+                position: "is-bottom",
+                type: "is-success"
+              })
+            })
+        }
       });
     },
     PayParcela(conta) {
+      if(conta.pago.length == conta.parcelas) return false;
       this.$buefy.dialog.confirm({
         title: conta.titulo+" - R$"+this.converteMoeda(conta.valor),
         message:`${conta.parcelas} parcelas de <b>R$ ${this.converteMoeda(conta.valor/conta.parcelas)}</b><br>${conta.pago.length} parcelas pagas`,
         confirmText: "Pagar parcela",
         cancelText: "Cancelar",
         type: "is-success",
-        onConfirm: () =>
-          this.$buefy.toast.open({
-            message: "Parcela paga!",
-            position: "is-bottom",
-            type: "is-success"
-          }),
+        onConfirm: ()=>{
+          let data = {
+            contaid: conta._id,
+            titulo: `${conta.titulo} - Parcela ${conta.pago.length+1}`,
+            valor: conta.valor,
+            tipo:0
+          }
+          let toast = this.$buefy.toast
+          let up = this.UpdateContas
+          $.post(this.api+`conta/pagar/${conta.userid}`, data)
+            .done(data=>{
+              up()
+              toast.open({
+                message: "Parcela paga!",
+                position: "is-bottom",
+                type: "is-success"
+              })
+            })
+        }
       });
     }
   }
