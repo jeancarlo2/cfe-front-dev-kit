@@ -14,12 +14,16 @@ div
     hr
   .columns.is-mobile.is-centered(v-for="conta in contas.parceladas")
     .column.is-11
-      .box.box-list
-        span.titulo(@click="PayConta(conta._id)") {{ conta.titulo }}
-        .buttons.is-marginless.is-pulled-right
-          b-button(type="is-danger" size="is-small" @click="DelConta(conta._id)" rounded)
-            b-icon(pack="fa" icon="trash" size="is-small")
-        span.is-pulled-right(style="margin-right: 25px;" @click="PayConta(conta._id)") R$ {{ converteMoeda(conta.valor) }}
+      .box.box-list(@click="PayConta(conta._id)")
+        span.titulo {{ conta.titulo }}
+          //- small R$ {{ converteMoeda(conta.valor) }}
+        //- .buttons.is-marginless.is-pulled-right
+        //-   b-button(type="is-danger" size="is-small" @click="DelConta(conta._id)" rounded)
+        //-     b-icon(pack="fa" icon="trash" size="is-small")
+        span.is-pulled-right(@click="PayConta(conta._id)")
+          small
+            b {{conta.parcelas}}x 
+          span R${{ converteMoeda(conta.valor/conta.parcelas) }}
   .divider
     b fixas
     hr
@@ -60,7 +64,7 @@ export default {
       this.month = m
       this.year = y
       console.log(m,y)
-      // this.UpdateContas()
+      this.UpdateContas()
     },
     async UpdateContas(){
         this.contas  = await this.conta.get(this.month, this.year)
