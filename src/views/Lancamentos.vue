@@ -45,7 +45,9 @@ export default {
         this.lancamentos  = await this.lancamento.get(this.month, this.year)
     },
     async UpdateSaldo(){
-      this.saldo        = await this.lancamento.saldo(this.month, this.year)
+      let month = new Date().getMonth()
+      let year  = new Date().getFullYear()
+      this.saldo        = await this.lancamento.saldo(month, year)
       this.saldo        = this.converteMoeda(this.saldo)
     },
     DelConta(id) {
