@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-    .hero(:class="(parseFloat(value)>=0)? 'is-success':'is-danger'")
+    .hero(:class="(parseFloat(value)<0)? 'is-danger':'is-success'")
         .hero-body
             .container
                 h1.title.has-text-centered
