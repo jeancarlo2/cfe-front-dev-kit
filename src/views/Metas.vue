@@ -8,14 +8,13 @@ div
   .columns.is-mobile.is-centered
     .column.is-11
       .box.box-list
-        b-icon(pack="fa" icon="shopping-cart")
         span.titulo Tênis para correr
         .buttons.is-marginless.is-pulled-right
           b-button(type="is-danger" size="is-small" @click='DelMeta(1)' rounded)
             b-icon(pack="fa" icon="trash" size="is-small")
           b-button(type="is-success" size="is-small" @click='AddFundos(1)' rounded)
             b-icon(pack="fa" icon="money-bill-alt" size="is-small")
-        b-progress(:type="setProgress(60, 100)" :value="60" :max="100" size="is-medium" show-value) 60 / 100
+        b-progress(:type="setProgress(60, 100)" :value="60" :max="100" size="is-large" show-value) 60 / 100
 </template>
 
 <script>

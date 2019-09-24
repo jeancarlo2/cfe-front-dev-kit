@@ -3,11 +3,11 @@
         .control.is-expanded
             b-select(v-model="mes" expanded size="is-medium")
                 option(v-for="(m, i) in meses" :value="i") {{ m }}
-        .control.is-expanded
+        .control
             b-select(v-model="ano" expanded size="is-medium" )
                 option(v-for="a in anos" :value="a") {{ a }}
-        .control
-          b-button(size="is-medium" @click="update(mes,ano)") Ir
+        .control.is-expanded
+          b-button.is-fullwidth(size="is-medium" type="is-info" @click="update(mes,ano)") Ir
 </template>
 <script>
 export default {

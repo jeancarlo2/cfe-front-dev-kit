@@ -5,6 +5,10 @@ div
   br
   b-button(@click="AddConta = true" type="is-text" size="is-large").flutuante
     i.fa.fa-plus-circle.has-text-success.fa-3x
+  br
+  .columns.is-mobile.is-centered
+    .column.is-11(style="padding-top: 0;")
+      Datepicker(:update="update")
   .columns.is-mobile.is-centered
     .column.is-11
       .box.box-list
@@ -16,11 +20,13 @@ div
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Modal from "@/modal/Contas.vue";
+import Navbar     from "@/components/Navbar.vue";
+import Datepicker from "@/components/Datepicker.vue";
+import Modal      from "@/modal/Contas.vue";
 
 export default {
   components: {
+    Datepicker,
     Navbar,
     Modal
   },
@@ -30,6 +36,12 @@ export default {
     };
   },
   methods: {
+    async update(m,y){
+      this.month = m
+      this.year = y
+      console.log(m,y)
+      // this.UpdateContas()
+    },
     CloseModal() {
       this.AddConta = false;
     },

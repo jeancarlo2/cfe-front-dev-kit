@@ -37,6 +37,9 @@ $colors: (
   right: 0!important;
   left: initial!important;
 }
+.progress-wrapper .progress.is-large + .progress-value{
+  margin-top: 5px;
+}
 // .modal-card-body{
 //   background: $bg;
 // }
