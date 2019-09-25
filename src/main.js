@@ -33,6 +33,13 @@ Vue.prototype.conta = {
     })
   }
 }
+Vue.prototype.meta = {
+  get(){
+    return new Promise((r,rr)=>{
+      $.post(Vue.prototype.api+`meta/${Vue.prototype.usuario._id}`).then(data => r(data) )
+    })
+  }
+}
 Vue.prototype.converteMoeda = $ => parseFloat($).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 
 new Vue({
