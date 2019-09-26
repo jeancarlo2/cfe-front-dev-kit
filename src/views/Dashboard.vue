@@ -18,13 +18,20 @@ export default {
       usuario: Cookies.getJSON('usuario'),
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
+      contas:0,
+      metas:0
     }
   },
   async created() {
       console.log(this.usuario)
       if(!this.usuario) this.$router.push("/");
+      this.updateSaldo()
+  },
+  methods:{
+    async updateSaldo(){
       this.saldo  = await this.lancamento.saldo(this.month, this.year)
       this.saldo  = this.converteMoeda(this.saldo)
+    },
   },
   components: {
     Navbar,

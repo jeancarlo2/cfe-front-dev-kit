@@ -25,18 +25,18 @@ Vue.prototype.lancamento  = {
   }
 }
 Vue.prototype.conta = {
-  get(mes, ano){
+  get(mes, ano, limit=0){
     return new Promise((r,rr)=>{
       mes     = mes + 1
       mes     = (mes < 10) ? "0"+mes : mes
-      $.post(Vue.prototype.api+`conta/${Vue.prototype.usuario._id}/${mes}/${ano}`).then(data => r(data) )
+      $.post(Vue.prototype.api+`conta/${Vue.prototype.usuario._id}/${mes}/${ano}${(limit)? '/'+limit:''}`).then(data => r(data) )
     })
   }
 }
 Vue.prototype.meta = {
-  get(){
+  get(limit){
     return new Promise((r,rr)=>{
-      $.post(Vue.prototype.api+`meta/${Vue.prototype.usuario._id}`).then(data => r(data) )
+      $.post(Vue.prototype.api+`meta/${Vue.prototype.usuario._id}${(limit)? '/'+limit:''}`).then(data => r(data) )
     })
   }
 }

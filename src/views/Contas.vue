@@ -144,7 +144,7 @@ export default {
           let data = {
             contaid: conta._id,
             titulo: `${conta.titulo} - Parcela ${conta.pago.length+1}`,
-            valor: conta.valor,
+            valor: conta.valor/conta.parcelas,
             tipo:0
           }
           let toast = this.$buefy.toast

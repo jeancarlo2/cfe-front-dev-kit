@@ -57,7 +57,7 @@ export default {
         onConfirm: (valor) => {
           let data = {
             metaid: meta._id,
-            titulo: `Meta:${meta.titulo}`,
+            titulo: `Meta: ${meta.titulo}`,
             valor: valor,
             tipo: 0
           };
