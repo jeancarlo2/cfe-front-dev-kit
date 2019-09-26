@@ -6,7 +6,7 @@ import Buefy from 'buefy'
 Vue.use(Buefy)
 Vue.config.productionTip = false
 Vue.prototype.api = "https://appcfe.tk/";
-Vue.prototype.api = "http://localhost/api/CFE-PHP-API/";
+// Vue.prototype.api = "http://localhost/api/CFE-PHP-API/";
 Vue.prototype.usuario     = Cookies.getJSON('usuario')
 Vue.prototype.lancamento  = {
   saldo(mes, ano){

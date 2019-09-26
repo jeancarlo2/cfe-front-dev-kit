@@ -4,10 +4,11 @@
     .column.is-11
         .box
             span.subtitle Contas
+              b  Parceladas
             b-button(@click="AddConta = true" type="is-text" style="float: right;")
                 b-icon.has-text-success(pack="fa" icon="plus-circle")
             hr
-            .columns.is-mobile(v-for="conta in contas.parceladas")
+            .columns(v-for="conta in contas.parceladas")
               .column
                 span.titulo(@click="PayParcela(conta)") {{ conta.titulo }}
                 //- .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(conta._id)")
@@ -16,7 +17,16 @@
                   span R${{ converteMoeda(conta.valor) }}
                 div(@click="PayParcela(conta)")
                   b-progress(:type="setProgress(conta.pagos.length*(conta.valor/conta.parcelas), conta.valor)" :value="conta.pagos.length*(conta.valor/conta.parcelas)" :max="parseFloat(conta.valor)" size="is-normal" show-value) {{ (conta.pagos.length)?conta.pagos.length:0 }} / {{conta.parcelas}}
+            span.subtitle Contas
+              b  Fixas
             hr
+            .columns(v-for="conta in contas.fixas")
+              .column
+                span.titulo(@click="PayParcela(conta)") {{ conta.titulo }}
+                //- .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(conta._id)")
+                //-   b-icon(pack="fa" icon="trash" type="is-danger" size="is-small")
+                span.is-pulled-right
+                  span R${{ converteMoeda(conta.valor) }}
             p.has-text-centered
                 router-link.button.is-text(to="contas") ver contas
 </template>
