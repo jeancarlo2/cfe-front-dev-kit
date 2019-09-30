@@ -32,7 +32,7 @@ export default {
                 conta:      false,
             }
             let close = this.close
-            $.post(this.api+'lancamento/create/'+this.usuario._id, data)
+            $.post(this.api+'lancamento/create/'+this.usuario()._id, data)
                 .done(function(data){
                     close()
                 })

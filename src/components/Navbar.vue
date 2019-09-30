@@ -26,10 +26,14 @@ nav.navbar.is-success
       //-   span.icon.is-small.is-left
       //-     i.fa.fa-chart-line
       //-   span(style="margin-left:10px") Relatórios
-      //- router-link.navbar-item.has-text-white(to="conta")
-      //-   span.icon.is-small.is-left
-      //-     i.fa.fa-user
-      //-   span(style="margin-left:10px") Minha conta
+      router-link.navbar-item.has-text-white(to="conta")
+        span.icon.is-small.is-left
+          i.fa.fa-user
+        span(style="margin-left:10px") Minha conta
+      a.navbar-item.has-text-white(v-on:click="sair()")
+        span.icon.is-small.is-left
+          i.fas.fa-sign-out-alt
+        span(style="margin-left:10px") Sair
 </template>
 
 <script>
@@ -42,6 +46,10 @@ export default {
       if(!Cookies.getJSON('usuario')) this.$router.push("/");
   },
   methods: {
+    sair(){
+      Cookies.remove('usuario')
+      this.$router.push("/");
+    },
     togglemenu: function () {
       // eslint-disable-next-line
       $(".navbar-burger").toggleClass("is-active");

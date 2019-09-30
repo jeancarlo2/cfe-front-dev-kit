@@ -35,7 +35,7 @@ export default {
             }
             let close = this.close
             console.log(data) 
-            $.post(this.api+'conta/create/'+this.usuario._id, data)
+            $.post(this.api+'conta/create/'+this.usuario()._id, data)
                 .done(function(data){
                     close()
                 })

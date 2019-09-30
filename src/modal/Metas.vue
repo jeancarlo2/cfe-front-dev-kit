@@ -27,7 +27,7 @@ export default {
         titulo: this.titulo
       };
       let close = this.close;
-      $.post(this.api + "meta/create/" + this.usuario._id, data).done(function(
+      $.post(this.api + "meta/create/" + this.usuario()._id, data).done(function(
         data
       ) {
         close();
