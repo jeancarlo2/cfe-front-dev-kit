@@ -15,7 +15,6 @@ export default {
   data(){
     return {
       saldo:false,
-      usuario: Cookies.getJSON('usuario'),
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
       contas:0,
@@ -23,8 +22,7 @@ export default {
     }
   },
   async created() {
-      console.log(this.usuario)
-      if(!this.usuario) this.$router.push("/");
+      if(!this.usuario()) this.$router.push("/");
       this.updateSaldo()
   },
   methods:{

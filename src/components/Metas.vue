@@ -74,15 +74,6 @@ export default {
       this.AddMeta = false
       this.updateMeta()
     },
-    setProgress(val) {
-      if (val < 40) {
-        return "is-danger";
-      } else if (val > 40 && val < 65) {
-        return "is-warning";
-      } else {
-        return "is-success";
-      }
-    }
   }
 };
 </script>

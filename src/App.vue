@@ -12,12 +12,12 @@ export default {}
 </script>
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
-// @import "@/theme/_variables.scss";
+@import "@/theme/_variables.scss";
 // @import "@/theme/_overrides.scss";
 
 // $primary: #8c67ef;
 // $primary-invert: findColorInvert($primary);
-// $bg: #2B3E50;
+$bg: #2B3E50;
 $colors: (
     "white": ($white, $black),
     "black": ($black, $white),
@@ -40,12 +40,21 @@ $colors: (
 // .progress-wrapper .progress.is-large + .progress-value{
 //   margin-top: 5px;
 // }
-// .modal-card-body{
-//   background: $bg;
-// }
-// .field .label{
-//   color:#fff
-// }
+.select select, .textarea, .input, .taginput .taginput-container.is-focusable {
+    background-color: transparent;
+    border-color: #dee5ed;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+    color: #fff;
+}
+.modal-card-body{
+  background: $bg;
+}
+.field .label{
+  color:#fff
+}
 #app{
   padding-bottom: 90px
 }
@@ -55,10 +64,11 @@ $colors: (
 .divider b{
   position: absolute;
   left: 10px;
-  background: #fff;
+  background: $bg;
+  color: #fff;
   text-transform: uppercase;
   font-size: 12px;
-  padding: 3px;
+  padding: 5px 15px;
   bottom: -10px;
 }
 .modal-card{
@@ -70,14 +80,20 @@ $colors: (
 .box{
   padding: 10px 10px 2px;
 }
-.box.despesa{
-  border-bottom: 3px solid $danger
+.bx.receita,
+.bx.despesa{
+  padding-left: 5px
 }
+.bx.despesa,
+.box.despesa{
+  border-left: 3px solid $danger
+}
+.bx.receita,
 .box.receita{
-  border-bottom: 3px solid $success
+  border-left: 3px solid $success
 }
 .box.conta{
-  border-bottom: 3px solid $info
+  border-left: 3px solid $info
 }
 .box hr{
   height: 1px;
