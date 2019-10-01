@@ -12,26 +12,26 @@ div
   .divider
     b parceladas
     hr
-  .columns.is-mobile.is-centered(v-for="conta in contas.parceladas")
+  .columns.is-mobile.is-centered(v-for="cc in contas.parceladas")
     .column.is-11
-      .box.box-list(:class="conta.pago.length ? 'receita':''")
-        span.titulo(@click="pp(conta)") {{ conta.titulo }}
-        .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(conta._id)")
+      .box.box-list(:class="cc.pago.length ? 'receita':''")
+        span.titulo(@click="pp(cc)") {{ cc.titulo }}
+        .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(cc._id)")
           b-icon(pack="fa" icon="trash" type="is-danger" size="is-small")
-        span.is-pulled-right(@click="pp(conta)")
-          span R${{ converteMoeda(conta.valor) }}
-        div(@click="pp(conta)")
-          b-progress(:type="setProgress(conta.pagos.length*(conta.valor/conta.parcelas), conta.valor)" :value="conta.pagos.length*(conta.valor/conta.parcelas)" :max="parseFloat(conta.valor)" size="is-normal" show-value) {{ (conta.pagos.length)?conta.pagos.length:0 }} / {{conta.parcelas}}
+        span.is-pulled-right(@click="pp(cc)")
+          span R${{ converteMoeda(cc.valor) }}
+        div(@click="pp(cc)")
+          b-progress(:type="setProgress(cc.pagos.length*(cc.valor/cc.parcelas), cc.valor)" :value="cc.pagos.length*(cc.valor/cc.parcelas)" :max="parseFloat(cc.valor)" size="is-normal" show-value) {{ (cc.pagos.length)?cc.pagos.length:0 }} / {{cc.parcelas}}
   .divider
     b fixas
     hr
-  .columns.is-mobile.is-centered(v-for="conta in contas.fixas")
+  .columns.is-mobile.is-centered(v-for="cc in contas.fixas")
     .column.is-11
-      .box.box-list(:class="conta.pago.length ? 'receita':''")
-        span.titulo(@click="pp(conta)") {{ conta.titulo }}
-        .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(conta._id)")
+      .box.box-list(:class="cc.pago.length ? 'receita':''")
+        span.titulo(@click="pc(cc)") {{ cc.titulo }}
+        .buttons.is-pulled-right(style="margin-left:10px;margin-botton:5px!important" @click="DelConta(cc._id)")
           b-icon(pack="fa" icon="trash" type="is-danger" size="is-small")
-        span.is-pulled-right(style="margin-right: 25px;" @click="pp(conta)") R$ {{ converteMoeda(conta.valor) }}
+        span.is-pulled-right(style="margin-right: 25px;" @click="pp(cc)") R$ {{ converteMoeda(cc.valor) }}
 </template>
 <style>
 .progress-wrapper .progress-value{
