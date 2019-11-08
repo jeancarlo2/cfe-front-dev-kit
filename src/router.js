@@ -36,6 +36,16 @@ export default new Router({
       component: () => import('./views/Metas.vue')
     },
     {
+      path: '/listas',
+      name: 'listas',
+      component: () => import('./views/Listas.vue')
+    },
+    {
+      path: '/lista/:id',
+      name: 'lista',
+      component: () => import('./views/Lista.vue')
+    },
+    {
       path: '/relatorios',
       name: 'relatorios',
       component: () => import('./views/Relatorios.vue')

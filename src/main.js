@@ -24,6 +24,18 @@ Vue.prototype.lancamento  = {
     })
   }
 }
+Vue.prototype.lista = {
+  itens(id){
+    return new Promise((r,rr)=>{
+      $.post(Vue.prototype.api+`lista/get/${id}`).then(data => r(data.itens) )
+    })
+  },
+  get(limit){
+    return new Promise((r,rr)=>{
+      $.post(Vue.prototype.api+`lista/${Vue.prototype.usuario()._id}${(limit)? '/'+limit:''}`).then(data => r(data) )
+    })
+  }
+}
 Vue.prototype.conta = {
   get(mes, ano, limit=0){
     return new Promise((r,rr)=>{

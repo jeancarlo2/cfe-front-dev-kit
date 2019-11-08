@@ -61,16 +61,6 @@ export default {
     this.UpdateContas()
   },
   methods: {
-    setProgress(val, max) {
-      let percent = (max/val)
-      if ( percent <= 1.25) {
-          return "is-success";
-      }else if ( percent <= 2.2) {
-          return "is-warning";
-      }else{
-          return "is-danger";
-      }
-    },
     async update(m,y){
       this.month = m
       this.year = y
