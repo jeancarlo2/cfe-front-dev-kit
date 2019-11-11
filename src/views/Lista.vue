@@ -13,7 +13,6 @@ div
                     b-icon(pack="fa" icon="trash" type="is-danger" size="is-small")
                 span.is-pulled-right(style="margin-right: 25px;" @click="Pagar(it)") R$ {{ converteMoeda(it.valor) }}
 </template>
-
 <script>
 import Navbar from "@/components/Navbar.vue";
 import Modal from "@/modal/Itens.vue";

@@ -8,11 +8,13 @@
 import "@/js/all.js"
 import "@/js/jquery.min.js"
 import "@/js/js.cookie.min.js"
+
 export default {}
 </script>
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
 @import "@/theme/_variables.scss";
+
 // @import "@/theme/_overrides.scss";
 
 // $primary: #8c67ef;

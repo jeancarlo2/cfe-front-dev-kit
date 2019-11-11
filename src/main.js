@@ -34,6 +34,11 @@ Vue.prototype.lista = {
     return new Promise((r,rr)=>{
       $.post(Vue.prototype.api+`lista/${Vue.prototype.usuario()._id}${(limit)? '/'+limit:''}`).then(data => r(data) )
     })
+  },
+  getShared(limit){
+    return new Promise((r,rr)=>{
+      $.post(Vue.prototype.api+`lista/shared/${Vue.prototype.usuario().email}${(limit)? '/'+limit:''}`).then(data => r(data) )
+    })
   }
 }
 Vue.prototype.conta = {
